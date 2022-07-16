@@ -13,7 +13,7 @@ import { Home5 } from "./components/Home5";
 const Animated = () => {
   const location = useLocation();
   return (
-   
+        // New commit for test
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home1/> }></Route>
         <Route path="/2" element={<Home2/> }></Route>
