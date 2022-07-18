@@ -1,11 +1,22 @@
 import "../App.css";
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
+import { useOnClickOutside } from "../hooks";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween, Timeline } from "react-gsap";
+import Burger from "./Burger/Burger";
+import Menu from "./Menu/Menu";
+import FocusLock from "react-focus-lock";
+import { theme } from "../theme";
+import { ThemeProvider } from "styled-components";
 
 function Home1() {
+  // -- Burger Menu -- \\
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const menuId = "main-menu";
+
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -78,11 +89,13 @@ function Home1() {
 
     /* ---------------------------------- */
   }, []);
+
   const onLoadedData = () => {
     setLoading(false);
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <>
       {isLoading ? (
         <div className="loadingContainer">
@@ -96,6 +109,7 @@ function Home1() {
       ) : (
         <div></div>
       )}
+    
       <video
         src="https://firebasestorage.googleapis.com/v0/b/heterometadev-4d7aa.appspot.com/o/SAHNE%205%20HETEROMETA.mp4?alt=media&token=36635335-77ae-4893-b322-6e8eb4c39744"
         playsinline="true"
@@ -113,84 +127,90 @@ function Home1() {
         </div>
         <p className="scrollText">Scroll</p>
       </div>
-        <Controller>
-          <Scene
-            duration={400}
-            pin={true}
-            indicators={false}
-            triggerHook="onLeave"
-          >
-            {(progress) => (
-              <div id="hero" className="hero ">
-                <Timeline totalProgress={progress} paused>
-                  <Tween
-                    from={{ scale: 10, opacity: 0 }}
-                    to={{ scale: 1, opacity: 1 }}
-                  >
-                    <div class="boxContainer">
-                      <div class="firefly"></div>
-                      <div className="boxCenter">
-                        <a href="/2" class="animated-button10">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          Explore Now
-                        </a>
-                      </div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
-                      <div class="firefly"></div>
+      <Controller>
+        <Scene
+          duration={400}
+          pin={true}
+          indicators={false}
+          triggerHook="onLeave"
+        >
+          {(progress) => (
+            <div id="hero" className="hero ">
+              <Timeline totalProgress={progress} paused>
+                <Tween
+                  from={{ scale: 10, opacity: 0 }}
+                  to={{ scale: 1, opacity: 1 }}
+                >
+                  <div class="boxContainer">
+                    <div class="firefly"></div>
+                    <div className="boxCenter">
+                      <a href="/2" class="animated-button10">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Explore Now
+                      </a>
                     </div>
-                  </Tween>
-                </Timeline>
-              </div>
-            )}
-          </Scene>
-        </Controller>
-
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                    <div class="firefly"></div>
+                  </div>
+                </Tween>
+              </Timeline>
+            </div>
+          )}
+        </Scene>
+      </Controller>
+      <div ref={node}>
+        <FocusLock disabled={!open}>
+          <Burger open={open} setOpen={setOpen} aria-controls={menuId}  />
+          <Menu open={open} setOpen={setOpen} id={menuId} />
+        </FocusLock>
+      </div>
     </>
+    </ThemeProvider>
   );
 }
 

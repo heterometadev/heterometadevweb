@@ -4,8 +4,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween, Timeline } from "react-gsap";
+import { theme } from "../theme";
+import { ThemeProvider } from "styled-components";
+import Burger from "./Burger/Burger";
+import Menu from "./Menu/Menu";
+import FocusLock from "react-focus-lock";
 
 function Home2() {
+   // -- Burger Menu -- \\
+   const [open, setOpen] = useState(false);
+   const node = useRef();
+   const menuId = "main-menu";
+ 
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,40 +90,40 @@ function Home2() {
   }, []);
   const onLoadedData = () => {
     setLoading(false);
-    
   };
 
   return (
-    <>
-     {isLoading ? (
-        <div className="loadingContainer">
-          <div class="loading">
-            <span></span>
-            <span></span>
-            <span></span>
-            <h2>Loading</h2>
+    <ThemeProvider theme={theme}>
+      <>
+        {isLoading ? (
+          <div className="loadingContainer">
+            <div class="loading">
+              <span></span>
+              <span></span>
+              <span></span>
+              <h2>Loading</h2>
+            </div>
           </div>
+        ) : (
+          <div></div>
+        )}
+        <video
+          src="https://firebasestorage.googleapis.com/v0/b/heterometadev-4d7aa.appspot.com/o/SAHNE%202%20KURAKLIK.mp4?alt=media&token=a8bcaf8a-5d6c-4a86-b071-365634aaaf2a"
+          playsinline="true"
+          webkit-playsinline="true"
+          id="video"
+          preload="auto"
+          muted="muted"
+          class="video-background"
+          onLoadedData={onLoadedData}
+        ></video>
+        <div id="container"></div>
+        <div class="scroll-downs">
+          <div class="mousey">
+            <div class="scroller"></div>
+          </div>
+          <p className="scrollText">Scroll</p>
         </div>
-      ) : (
-        <div></div>
-      )}
-      <video
-        src="https://firebasestorage.googleapis.com/v0/b/heterometadev-4d7aa.appspot.com/o/SAHNE%202%20KURAKLIK.mp4?alt=media&token=a8bcaf8a-5d6c-4a86-b071-365634aaaf2a"
-        playsinline="true"
-        webkit-playsinline="true"
-        id="video"
-        preload="auto"
-        muted="muted"
-        class="video-background"
-        onLoadedData={onLoadedData}
-      ></video>
-      <div id="container"></div>
-      <div class="scroll-downs">
-        <div class="mousey">
-          <div class="scroller"></div>
-        </div>
-        <p className="scrollText">Scroll</p>
-      </div>
 
         <Controller>
           <Scene
@@ -191,8 +201,15 @@ function Home2() {
             )}
           </Scene>
         </Controller>
-    </>
+        <div ref={node}>
+        <FocusLock disabled={!open}>
+          <Burger open={open} setOpen={setOpen} aria-controls={menuId}  />
+          <Menu open={open} setOpen={setOpen} id={menuId} />
+        </FocusLock>
+      </div>
+      </>
+    </ThemeProvider>
   );
 }
 
-export { Home2 }
+export { Home2 };

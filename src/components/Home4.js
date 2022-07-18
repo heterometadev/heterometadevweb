@@ -4,6 +4,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween, Timeline } from "react-gsap";
+import { theme } from "../theme";
+import { ThemeProvider } from "styled-components";
+
 
 function Home4() {
   const [isLoading, setLoading] = useState(true);

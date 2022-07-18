@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useOnClickOutside } from "./hooks";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Home1 } from './components/Home1';
