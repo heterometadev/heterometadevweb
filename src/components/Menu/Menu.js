@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { bool } from "prop-types";
 import { StyledMenu } from "./Menu.styled";
 import { useNavigate } from "react-router-dom";
-import { Canvas, useFrame, useThree , } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ThemeProvider } from "styled-components";
 import {
   OrbitControls,
@@ -12,31 +12,16 @@ import {
   Html,
   Float,
   PerspectiveCamera,
-  Text3D
+  Text3D,
 } from "@react-three/drei";
 import * as THREE from "three";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 
-
-function Box() {
-  return (
-    <mesh>
-      <boxBufferGeometry attach="geometry" />
-      <meshLambertMaterial attach="material" color="purple" />
-    </mesh>
-  );
-}
-function MenuItemThree() {
-  return (
-    <mesh>
-      <Text color="white" anchorX="center" anchorY="middle">
-        hello world!
-      </Text>
-      <Text color="white" anchorX="start" anchorY="start">
-        hello world!
-      </Text>
-    </mesh>
-  );
-}
 const CameraControls = () => {
   // Get a reference to the Three.js Camera, and the canvas html element.
   // We need these to setup the OrbitControls class.
@@ -75,10 +60,10 @@ const Menu = ({ open, ...props }) => {
   function Word({ children, ...props }) {
     const color = new THREE.Color();
     const fontProps = {
-      font: "/fonts/Montserrat-Medium.ttf",
-      fontSize: 2.5,
+      font: "/fonts/Andromeda-eR2n.ttf",
+      fontSize: 2.2,
       letterSpacing: -0.05,
-      lineHeight: 1,
+      lineHeight: 2,
       "material-toneMapped": false,
     };
     const ref = useRef();
@@ -108,12 +93,12 @@ const Menu = ({ open, ...props }) => {
       // if (children == "Partners") navigate("../partners");
       // if (children == "Team") navigate("../team");
       // if (children == "Contact") navigate("../contact");
-      if (children == "Whitepaper"){
-         window.location.replace('https://heterometa-whitepaper.web.app')
+      if (children == "Whitepaper") {
+        window.location.replace("https://heterometa-whitepaper.web.app");
         // React.useEffect(() => {
         //   window.location.replace('https://heterometa-whitepaper.web.app')
         // }, [])
-      };
+      }
     }
 
     return (
@@ -127,8 +112,7 @@ const Menu = ({ open, ...props }) => {
         {...fontProps}
         children={children}
         onClick={handleNavigate}
-      >
-      </Text>
+      ></Text>
     );
   }
 
@@ -151,7 +135,7 @@ const Menu = ({ open, ...props }) => {
         new THREE.Vector3().setFromSpherical(
           spherical.set(radius, phiSpan * 1, thetaSpan * 1)
         ),
-        "News&Info",
+        "NewsInfo",
         "news",
       ]);
       temp.push([
@@ -196,33 +180,66 @@ const Menu = ({ open, ...props }) => {
 
   return (
     <>
-      <div>
-        <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-          <div className="rightBottomContainer">
-            <h1 className="rightBottomText">-Use your mouse for look around</h1>
-          </div>
-          <div className="leftBottomContainer">
-            {/* <h1 className="leftBottomText">-Use mouse for look around</h1> */}
-          </div>
-          {/* camera={{ fov: 70, position: [-30, 30, 20] }} */}
-          <Canvas camera={{ fov: 70, position: [-30, 30, 20] }}>
-            {/* <OrbitControls  /> */}
-            <CameraControls />
-            <Stars factor={2} />
-            <ambientLight intensity={0.5} />
-            <spotLight position={[20, 20, 20]} angle={1} />
+      <BrowserView>
+        <div>
+          <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
+            <div className="rightBottomContainer">
+              <h1 className="rightBottomText">
+                -Use your mouse for look around
+              </h1>
+            </div>
+            <div className="leftBottomContainer">
+              {/* <h1 className="leftBottomText">-Use mouse for look around</h1> */}
+            </div>
+            {/* camera={{ fov: 70, position: [-30, 30, 20] }} */}
+            <Canvas camera={{ fov: 70, position: [-42, 30, 20] }}>
+              {/* <OrbitControls  /> */}
+              <CameraControls />
+              <Stars factor={2} />
+              <ambientLight intensity={0.5} />
+              <spotLight position={[20, 20, 20]} angle={1} />
 
-            {/* <MenuItemThree />
+              {/* <MenuItemThree />
             <MenuItemThree /> */}
-            {/* <Text color="white" fov={60} position={[120, 145, 120]} fontSize={55}>
+              {/* <Text color="white" fov={60} position={[120, 145, 120]} fontSize={55}>
               hello world!
             </Text> */}
-            <fog attach="fog" args={["#202025", 0, 80]} />
-            <Cloud count={3} radius={20} anchorX="center" anchorY="middle" />
-            {/* <TrackballControls /> */}
-          </Canvas>
-        </StyledMenu>
-      </div>
+              <fog attach="fog" args={["#202025", 20, 100]} />
+              <Cloud count={3} radius={22} anchorX="center" anchorY="middle" />
+              {/* <TrackballControls /> */}
+            </Canvas>
+          </StyledMenu>
+        </div>
+      </BrowserView>
+      <MobileView>
+        <div>
+          <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
+            <div class="menuInfoMobile">
+              <p className="menuInfoMobileText">
+                {" "}
+                -Use your mouse to look around
+              </p>
+            </div>
+            {/* camera={{ fov: 70, position: [-30, 30, 20] }} */}
+            <Canvas camera={{ fov: 70, position: [-50, 30, 20] }}>
+              {/* <OrbitControls  /> */}
+              <CameraControls />
+              <Stars factor={2} />
+              <ambientLight intensity={0.5} />
+              <spotLight position={[20, 20, 20]} angle={1} />
+
+              {/* <MenuItemThree />
+            <MenuItemThree /> */}
+              {/* <Text color="white" fov={60} position={[120, 145, 120]} fontSize={55}>
+              hello world!
+            </Text> */}
+              <fog attach="fog" args={["#202025", 0, 100]} />
+              <Cloud count={3} radius={20} anchorX="center" anchorY="middle" />
+              {/* <TrackballControls /> */}
+            </Canvas>
+          </StyledMenu>
+        </div>
+      </MobileView>
     </>
   );
 };

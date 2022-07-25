@@ -8,15 +8,15 @@ left: 2rem;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
-width: 2rem;
-height: 2rem;
+width: 2.5rem;
+height: 2.5rem;
 background: transparent;
 border: none;
 cursor: pointer;
 padding: 0;
 z-index: 10;
 span {
-  width: 2rem;
+  width: 2.5rem;
   height: 0.25rem;
   background: ${({ theme, open }) => open ? theme.primaryLight : theme.primaryLight};
   border-radius: 10px;
@@ -24,7 +24,6 @@ span {
   position: relative;
   transform-origin: 1px;
   :first-child {
-    
     transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
   }
   :nth-child(2) {
