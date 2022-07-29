@@ -89,7 +89,7 @@ const Menu = ({ open, ...props }) => {
     function handleNavigate() {
       console.log(children);
       // if (children == "Experiement") navigate("../");
-      // if (children == "News&Info") navigate("../news");
+      if (children == "Discover") navigate("../discover");
       // if (children == "Partners") navigate("../partners");
       // if (children == "Team") navigate("../team");
       // if (children == "Contact") navigate("../contact");
@@ -135,7 +135,7 @@ const Menu = ({ open, ...props }) => {
         new THREE.Vector3().setFromSpherical(
           spherical.set(radius, phiSpan * 1, thetaSpan * 1)
         ),
-        "NewsInfo",
+        "Discover",
         "news",
       ]);
       temp.push([

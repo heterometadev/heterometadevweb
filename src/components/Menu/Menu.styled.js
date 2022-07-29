@@ -86,14 +86,7 @@ background: linear-gradient(135deg, rgba(131,122,72,1) 0%, rgba(97,89,56,1) 5%, 
   }
   /* Text */
 
-  .blip-text {
-    font-size: 1rem;
-    font-weight: normal;
-    color: grey;
-    position: absolute;
-    transform: translateY(-50%);
-    font-family: Helvetica;
-  }
+
   /* General */
   .exploreNow {
     text-align: right;
