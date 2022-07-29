@@ -9,12 +9,11 @@
     padding-top: 30%;
     padding-left:7px;
 }
-}
 
+}
 .cardImage{
   width: 100%;
   height: 225px;
-
 }
 
 
@@ -31,11 +30,32 @@
     font-family: 'heteroFont';
     font-size: 3vmin;
   }
+
+  @media screen and (max-width: 560px) {
+    .cardTitle{
+      font-family: 'heteroFont';
+      font-size: 11vmin;
+    }
+  }
+
   .cardContent{
     font-family: 'Montserrat';
-    font-size: 1.35vmin;
+    font-size: 22px;
     color: rgb(203, 203, 203);
     line-height: 1.9;
+
+  }
+
+  @media screen and (max-width: 560px) {
+   .cardContent{
+    font-family: 'Montserrat';
+    font-size: 5vmin;
+    color: rgb(203, 203, 203);
+  }
+  }
+  .cardQuota{
+    font-family: 'Montserrat';
+    font-size:  large;
 
   }
 
@@ -67,8 +87,9 @@
 @media screen and (max-width: 560px) {
   .jt{
     position: relative;
-    font-size: 17vmin;
-    font-family: 'Staatliches', sans-serif;
+    font-size: 12vmin;
+    /* font-family: 'Staatliches', sans-serif; */
+    font-family: 'heteroFont';
     text-transform: uppercase;
     font-display: swap;
     text-shadow: 0 0 10px tomato;

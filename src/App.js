@@ -10,8 +10,7 @@ import { HeteroVideo } from "./components/HeteroVideo";
 import { Discover } from "./components/Discover";
 import { WhatIsHeterometa } from "./components/DiscoverPages/WhatIsHeterometa";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
+import {AnimatePresence , motion } from "framer-motion"
 const Animated = () => {
   const location = useLocation();
   return (

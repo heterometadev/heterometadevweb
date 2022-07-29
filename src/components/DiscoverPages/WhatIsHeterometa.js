@@ -19,7 +19,7 @@ function WhatIsHeterometa() {
   useState(() => {
     setTimeout(function () {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   });
 
   return (
@@ -42,7 +42,7 @@ function WhatIsHeterometa() {
           {/*  ------------- Loading -------------- */}
           {isLoading ? (
             <div id="loading">
-              <img id="loadingGif" src="loading.gif" />
+              <img id="loadingGif" src="../loading.gif" />
             </div>
           ) : (
             <Container className="container">
